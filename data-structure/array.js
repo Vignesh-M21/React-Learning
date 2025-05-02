@@ -12,7 +12,28 @@ class NewArray {
           return target.data[prop];
         }
       },
+
       // work on set method with set(target, prop, value)
+      set(target, prop, value) {
+        if (!(prop in target)) {
+          this._insertItem(prop, value, target);
+          return true;
+        }
+        target[prop] = value;
+        return true;
+      },
+
+      _insertItem(position, item, target) {
+        if (position in target.data) {
+          target.data[position] = item;
+          return true;
+        }
+        for (let index = target.length; index <= position; index++) {
+          target.data[index] = index == position ? item : undefined;
+        }
+        target.length = position + 1;
+        return true;
+      },
     });
   }
 
@@ -63,4 +84,6 @@ arr.push(2);
 arr.push(3);
 arr.push(6);
 
-console.log(arr[1]);
+arr[8] = 1;
+
+console.log(arr.data);
