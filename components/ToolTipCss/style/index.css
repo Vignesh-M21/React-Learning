@@ -50,8 +50,8 @@ body {
   background: var(--tooltip-color);
 }
 
-.avatar:hover::before,
-.avatar:hover::after {
+.avatar::before,
+.avatar::after {
   --scale: 1;
 }
 
@@ -73,4 +73,42 @@ body {
   content: "";
   border: 20px solid transparent;
   border-top-color: red;
+}
+.container {
+  margin-top: 200px;
+  position: relative;
+  /* width: 100px; */
+  text-align: center;
+}
+
+.container::before {
+  content: "";
+  --var-scale: 0;
+  border: 20px solid transparent;
+  border-top-color: blue;
+  transition: 150ms transform;
+  transform-origin: top center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px) scale(var(--var-scale));
+}
+
+.container:hover:before,
+.container:hover:after {
+  --var-scale: 1;
+}
+.container::after {
+  --var-scale: 0;
+
+  content: "Tooltip";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px) scale(var(--var-scale));
+  transition: 150ms transform;
+  background-color: blue;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  transform-origin: bottom center;
 }

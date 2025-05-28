@@ -1,4 +1,4 @@
-class NewArray {
+export class NewArray {
   constructor() {
     this.length = 0;
     this.data = {};
@@ -76,6 +76,10 @@ class NewArray {
     delete this.data[this.length - 1];
     this.length--;
   }
+
+  valueOf() {
+    return this.length;
+  }
 }
 
 const arr = new NewArray();
@@ -85,5 +89,9 @@ arr.push(3);
 arr.push(6);
 
 arr[8] = 1;
+const arr2 = new NewArray();
+arr2.push(2);
+arr2.push(3);
+arr2.push(6);
 
-console.log(arr.data);
+console.log(arr + arr2);
